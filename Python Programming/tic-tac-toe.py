@@ -36,14 +36,13 @@ def playerMove(player, board):
     while True:
         row = input("What row? ")
         col = input("What column? ")
-        if row.isdigit() and col.isdigit() and 0 <= int(row) <= 2 and 
-            0 <= int(col) <= 2 and board[row][col] == ".":
+        if row.isdigit() and col.isdigit() and (int(row) in range(0,3)) and (int(col) in range(0,3)) and board[int(row)][int(col)] == ".":
             # convert string to int
             row = int(row)
             col = int(col)
             
             # collect response it's valid
-            response = input(f"Place {player} at row {str(row)}, column {str(col)}? [y/n] ").lower()
+            response = input(f"Place {player} at row {row}, column {col}? [y/n] ").lower()
             while(response != "x" and response != "y"):
                 response = input("Not a valid option. Choose x or y: ")
 
@@ -109,7 +108,7 @@ def playGame():
         
             # check if the player won
             if(checkForWin(player, board)):
-                print("Congratulations! X Wins!")
+                print(f"Congratulations! {player} Wins!")
                 break
 
             # check if there is a tie
@@ -122,7 +121,7 @@ def playGame():
 
             # check if the computer won
             if(checkForWin(computer, board)):
-                print("You lose! O Wins!")
+                print(f"You lose! {computer} Wins!")
                 break
             
             # check if there is a tie
@@ -140,7 +139,7 @@ def playGame():
             computerMove(computer, board)
             printBoard(board)
             if(checkForWin(computer, board)):
-                print("You lose! O Wins!")
+                print(f"You lose! {computer} Wins!")
                 break
             
             if(checkForTie(board)):
@@ -150,7 +149,7 @@ def playGame():
             playerMove(player, board)
             printBoard(board)
             if(checkForWin(player, board)):
-                print("Congratulations! X Wins!")
+                print(f"Congratulations! {player} Wins!")
                 break
             
             if(checkForTie(board)):
